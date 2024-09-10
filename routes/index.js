@@ -4,7 +4,8 @@ const courseRoutes = require('./courseRoutes'); // Adjusted path
 
 // Define a simple route
 router.get('/', (req, res) => {
-    res.send('Welcome to the Node.js App!');
+  console.log('Hello World');
+  res.send('Welcome to the Node.js App!');
 });
 
 // Use the course routes
