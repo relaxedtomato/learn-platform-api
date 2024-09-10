@@ -17,8 +17,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Use the router for handling routes
 app.use('/', indexRouter);
 
+// Custom CORS function to allow specific domain pattern
+const allowedOrigins = [
+  /^https:\/\/learn-platform-learn-platform-pr-\d+\.up\.railway\.app$/, // Updated regex pattern
+  'learn-platform-staging.up.railway.app',
+  'learn-platform-production.up.railway.app'
+];
+
 app.use(cors({
-  origin: true, // Allow all origins for testing
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.some(pattern => pattern.test(origin))) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error('Not allowed by CORS')); // Block the request
+    }
+  }
 }));
 
 // Catch-all route for handling 404 errors
