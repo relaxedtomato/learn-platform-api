@@ -20,9 +20,9 @@ app.use('/', indexRouter);
 // Custom CORS function to allow specific domain pattern
 const allowedOrigins = [
   /^https:\/\/learn-platform-learn-platform-pr-\d+\.up\.railway\.app$/, // Updated regex pattern
-  'learn-platform-staging.up.railway.app',
-  'learn-platform-production.up.railway.app',
-  'learn-platform-learn-platform-pr-4.up.railway.app'
+  'https://learn-platform-staging.up.railway.app', // Added https
+  'https://learn-platform-production.up.railway.app', // Added https
+  'https://learn-platform-learn-platform-pr-4.up.railway.app' // Added https
 ];
 
 app.use(cors({
