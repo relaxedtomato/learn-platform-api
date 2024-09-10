@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const indexRouter = require('./routes/index'); // Adjusted path
 const {connectDB} = require('./src/config/db'); // Keep this as is
+const cors = require('cors'); // Add this line
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Use the router for handling routes
 app.use('/', indexRouter);
+
+// Allow CORS for the specific domain
+app.use(cors({
+  origin: process.env.LEARN_PLATFORM_FRONTEND_URL // Update this line
+}));
 
 // Catch-all route for handling 404 errors
 app.use((req, res, next) => {
