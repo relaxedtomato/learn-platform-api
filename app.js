@@ -11,12 +11,6 @@ const DOMAIN = process.env.RAILWAY_PUBLIC_DOMAIN || 'localhost';
 // Connect to the database
 connectDB();
 
-// Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Use the router for handling routes
-app.use('/', indexRouter);
-
 // Custom CORS function to allow specific domain pattern
 const allowedOrigins = [
   /^https:\/\/learn-platform-learn-platform-pr-\d+\.up\.railway\.app$/, // Updated regex pattern
@@ -34,6 +28,13 @@ app.use(cors({
     }
   }
 }));
+
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Use the router for handling routes
+app.use('/', indexRouter);
+
 
 // Catch-all route for handling 404 errors
 app.use((req, res, next) => {
