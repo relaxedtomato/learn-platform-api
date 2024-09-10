@@ -1,10 +1,14 @@
 const express = require('express');
-const path = require('path');
 const router = express.Router();
+const courseRoutes = require('./courseRoutes'); // Adjusted path
 
-// Serve the index.html file for the root route
+// Define a simple route
 router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/index.html'));
+    res.send('Welcome to the Node.js App!');
 });
 
+// Use the course routes
+router.use('/courses', courseRoutes); // Mount course routes
+
+// Export the router
 module.exports = router;
