@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const indexRouter = require('./routes/index'); // Adjusted path
 const {connectDB} = require('./src/config/db'); // Keep this as is
-const cors = require('cors');
+const cors = require('cors'); // Added CORS import
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,10 +11,15 @@ const DOMAIN = process.env.RAILWAY_PUBLIC_DOMAIN || 'localhost';
 // Connect to the database
 connectDB();
 
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Use the router for handling routes
+app.use('/', indexRouter);
+
 // Custom CORS function to allow specific domain pattern
 const allowedOrigins = [
-  /^https:\/\/learn-platform-staging\.up\.railway\.app$/,
-  // Add more regex patterns as needed
+  /^https:\/\/learn-platform\..*\.railway\.app$/, // Updated regex pattern
 ];
 
 app.use(cors({
@@ -26,12 +31,6 @@ app.use(cors({
     }
   }
 }));
-
-// Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Use the router for handling routes
-app.use('/', indexRouter);
 
 // Catch-all route for handling 404 errors
 app.use((req, res, next) => {
