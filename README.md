@@ -62,25 +62,31 @@ After doing this, we need to add the following environment variables (preferrabl
    PGNAME=railway (the database name by default is railway)
    PGPASSWORD (available from Railway PostgresSQL service)
    PGPORT (available from Railway PostgresSQL service)
-   NEXT_PUBLIC_API_DOMAIN (this is the frontend application, which we will create after deploying the backend)
 ```
 
 Ensure the backend service is publicly available.
 
-- [ ] TODO: Grab public domain from Railway project and set in `NEXT_PUBLIC_API_DOMAIN`
-
 To test out the API, you can use the following `curl` command:
+
 ```bash
-curl -X GET http://localhost:3000/api/courses
+curl -X GET [PUBLIC_API_DOMAIN]/courses/react-native-beginner-course
 ```
 
-## Notes
+You will receive JSON response with the course content.
 
-- Ensure your CORS settings are configured correctly for your production environment:\
-- [ ] TODO: Update with single regex pattern:
+Keep in mind when deploying the frontend, to store `PUBLIC_API_DOMAIN` as `NEXT_PUBLIC_API_DOMAIN`.
+Next we will look at deploying the frontend application, so head over to https://github.com/relaxedtomato/learn-platform-frontend
+
+Also, we need to configure the CORS settings for the frontend application after its deployed, so the following section will need to be updated:
+
 ```
 const allowedOrigins = [
+  /^https:\/\/learn-platform-learn-platform-pr-\d+\.up\.railway\.app$/, // Updated regex pattern
+  'https://learn-platform-staging.up.railway.app', // Added https
+  'https://learn-platform-production.up.railway.app', // Added https
+  'https://learn-platform-learn-platform-pr-4.up.railway.app' // Added https
 ];
-
 ```
+- [ ] TODO: Update with single regex pattern:
+
 - For more information, refer to the [Railway Documentation](https://docs.railway.app/).
