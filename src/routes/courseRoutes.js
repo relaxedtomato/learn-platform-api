@@ -1,5 +1,5 @@
 const express = require('express');
-const courseController = require('../src/controllers/courseController'); // Ensure this path is correct
+const courseController = require('../controllers/courseController'); // Ensure this path is correct
 
 const router = express.Router();
 

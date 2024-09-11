@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const indexRouter = require('./routes/index'); // Adjusted path
+const indexRouter = require('./src/routes'); // Adjusted path
 const {connectDB} = require('./src/config/db'); // Keep this as is
 const cors = require('cors'); // Added CORS import
 
