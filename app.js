@@ -5,7 +5,7 @@ const {connectDB} = require('./src/config/db'); // Keep this as is
 const cors = require('cors'); // Added CORS import
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const DOMAIN = process.env.RAILWAY_PUBLIC_DOMAIN || 'localhost';
 
 // Connect to the database
@@ -34,7 +34,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Use the router for handling routes
 app.use('/', indexRouter);
-
 
 // Catch-all route for handling 404 errors
 app.use((req, res, next) => {
