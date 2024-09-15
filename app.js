@@ -13,10 +13,7 @@ connectDB();
 
 // Custom CORS function to allow specific domain pattern
 const allowedOrigins = [
-  /^https:\/\/learn-platform-learn-platform-pr-\d+\.up\.railway\.app$/, // Updated regex pattern
-  'https://learn-platform-staging.up.railway.app', // Added https
-  'https://learn-platform-production.up.railway.app', // Added https
-  'https://learn-platform-learn-platform-pr-4.up.railway.app' // Added https
+  /^https:\/\/learn-platform-(staging|production|learn-platform-pr-\d+)\.up\.railway\.app$/,
 ];
 
 app.use(cors({
